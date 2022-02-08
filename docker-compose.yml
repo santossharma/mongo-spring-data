@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  mongodb_container:
+    image: mongo:latest
+    #environment:
+      #This user is created in the admin authentication database and given the role of root, which is a "superuser" role.
+      #MONGO_INITDB_ROOT_USERNAME: santoshsharma
+      #MONGO_INITDB_ROOT_PASSWORD: admin
+    container_name: "mongospringdata"
+    ports:
+      - 27017:27017
+    #volumes:
+      #- mongodb_data_container:/data/db
+  springboot-mongodb:
+    image: mongo-spring-data:1.0
+    container_name: "springbootmongodata"
+    ports:
+      - 8082:8082
+    links:
+      - mongospringdata
+
